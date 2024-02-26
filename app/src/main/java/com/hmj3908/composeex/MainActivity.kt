@@ -3,6 +3,7 @@ package com.hmj3908.composeex
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -16,15 +17,20 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.AsyncImage
+import coil.compose.rememberAsyncImagePainter
+import coil.compose.rememberImagePainter
 import com.hmj3908.composeex.ui.theme.ThoughtofthedayTheme
 
 class MainActivity : ComponentActivity() {
@@ -42,9 +48,50 @@ class MainActivity : ComponentActivity() {
 //                BoxEx()
 //                RowEx()
 //                ColumnEx()
-                Outer()
+//                Outer()
+//                Imagefun()
+                CoilEx()
             }
         }
+    }
+}
+
+//"https://raw.githubusercontent.com/Fastcampus-Android-Lecture-Project-2023/part4-chapter3/main/part-chapter3-10/app/src/main/res/drawable-hdpi/wall.jpg"
+@Composable
+fun CoilEx() {
+    //rememberAsyncImagePainter으로 사용할것
+//    val painter =
+//        rememberImagePainter(data = "https://t2.daumcdn.net/thumb/R720x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/DCs/image/w-8OBLUMUQXLxX4yEmnOEWejrQc.jpg")
+//    Image(
+//        painter = painter,
+//        contentDescription = "엔텔로프 캐년"
+//    )
+    Column {
+        AsyncImage(
+            model = "https://t2.daumcdn.net/thumb/R720x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/DCs/image/w-8OBLUMUQXLxX4yEmnOEWejrQc.jpg",
+            contentDescription = "엔텔로프 캐년"
+        )
+        AsyncImage(
+            model = "https://t2.daumcdn.net/thumb/R720x0.fjpg/?fname=http://t1.daumcdn.net/brunch/service/user/DCs/image/w-8OBLUMUQXLxX4yEmnOEWejrQc.jpg",
+            contentDescription = "엔텔로프 캐년"
+        )
+    }
+
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    ThoughtofthedayTheme {
+//        Greeting("Android")
+//        Buttonfun(onButtonClicked = {})
+//        SurfaceEx("Android")
+//        BoxEx()
+//        RowEx()
+//        ColumnEx()
+//        Outer()
+//        Imagefun()
+        CoilEx()
     }
 }
 
@@ -212,49 +259,54 @@ class MainActivity : ComponentActivity() {
 //    }
 //}
 
-@Composable
-fun Outer() {
-    // 외부에서 width를 강제로 150dp로 설정, 유동적으로 width, height가 얼마 이상일 때 뭘 넣겠다에 사용
-    Column(modifier = Modifier.width(150.dp)) {
-        Inner(modifier = Modifier
-            .widthIn(min = 100.dp, max = 400.dp)
-            .heightIn(min = 50.dp, max = 300.dp)
-            .width(200.dp)
-            .height(160.dp)
-        )
-        Inner(modifier = Modifier
-            .widthIn(min = 100.dp, max = 400.dp)
-            .heightIn(min = 50.dp, max = 300.dp)
-            .width(200.dp)
-            .height(140.dp)
-        )
+//@Composable
+//fun Outer() {
+//    // 외부에서 width를 강제로 150dp로 설정, 유동적으로 width, height가 얼마 이상일 때 뭘 넣겠다에 사용
+//    Column(modifier = Modifier.width(150.dp)) {
+//        Inner(modifier = Modifier
+//            .widthIn(min = 100.dp, max = 400.dp)
+//            .heightIn(min = 50.dp, max = 300.dp)
+//            .width(200.dp)
+//            .height(160.dp)
+//        )
+//        Inner(modifier = Modifier
+//            .widthIn(min = 100.dp, max = 400.dp)
+//            .heightIn(min = 50.dp, max = 300.dp)
+//            .width(200.dp)
+//            .height(140.dp)
+//        )
+//
+//    }
+//}
+//
+//@Composable
+//private fun Inner(modifier: Modifier = Modifier) {
+//    BoxWithConstraints(modifier) {
+//        if (maxHeight > 150.dp) {
+//            Text(
+//                text = "여기 꽤 길군요",
+//                modifier = Modifier.align(Alignment.BottomEnd)
+//                )
+//        }
+//        Text("maxW:$maxWidth maxH:$maxHeight minW:$minWidth minH:$minHeight")
+//    }
+//}
 
-    }
-}
+//@Composable
+//fun Imagefun() {
+//    Column {
+//        Image(
+//            painter = painterResource(id = R.drawable.wall),
+//            contentDescription = "엔텔로프 캐년"
+//        )
+//        Image(
+//            imageVector = Icons.Filled.Settings,
+//            contentDescription = "세팅"
+//        )
+////        Image(
+////            bitmap =,
+////            contentDescription =
+////        )
+//    }
+//}
 
-@Composable
-private fun Inner(modifier: Modifier = Modifier) {
-    BoxWithConstraints(modifier) {
-        if (maxHeight > 150.dp) {
-            Text(
-                text = "여기 꽤 길군요",
-                modifier = Modifier.align(Alignment.BottomEnd)
-                )
-        }
-        Text("maxW:$maxWidth maxH:$maxHeight minW:$minWidth minH:$minHeight")
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ThoughtofthedayTheme {
-//        Greeting("Android")
-//        Buttonfun(onButtonClicked = {})
-//        SurfaceEx("Android")
-//        BoxEx()
-        /*RowEx()*/
-//        ColumnEx()
-        Outer()
-    }
-}
